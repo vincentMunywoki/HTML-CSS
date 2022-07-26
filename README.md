@@ -10,3 +10,5 @@ hypertext markup language learning.
 [005-Ecomerce-web link ](https://Ecomerceweb.vincentmunywoki.repl.co/)
 
 [006-Calculate your age link ](https://agecalc.vincentmunywoki.repl.co/)
+
+[007-Rock paper scissors link ](https://Rock-paper-scissors.vincentmunywoki.repl.co/)
