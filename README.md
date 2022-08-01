@@ -16,3 +16,5 @@ hypertext markup language learning.
 [008-Animated login form link ](https://login-form.vincentmunywoki.repl.co/)
 
 [009-Random joke link ](https://Randomjoke.vincentmunywoki.repl.co/)
+
+[010-Get a Quote link ](https://Quote-Genarator.vincentmunywoki.repl.co/)
