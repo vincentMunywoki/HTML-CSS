@@ -1,0 +1,135 @@
+<!--This project generates a quote and displays it on your browser where you get your Quote.-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Quote of the day</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+ <body>  
+    <!-- Quote Container -->  
+    <div class="container">  
+     <!-- Quote to be Displayed Here -->  
+     <h1>  
+     <i class="fas fa-quote-left"></i>  
+     <span class="quote" id="quote"></span>  
+     <i class="fas fa-quote-right"></i>  
+     </h1>  
+     <!-- Author to be Displayed Here -->  
+     <p class="author" id="author"></p>  
+     <hr/>  
+     <div class="buttons">   
+       <!--Add an onclick event on 'next quote' button. Upon the click of a button, a new random quote is generated-->  
+       <button class="next" onclick="getNewQuote()">Next Quote</button>  
+     </div>  
+   </div> 
+   <script src="script.js"></script>
+   </body>  
+
+</html>
+
+
+/** Css file */
+*{  
+   margin:0;  
+   padding:0;  
+   box-sizing: border-box;  
+ }  
+ body{  
+   min-height:100vh;  
+   transition: 0.3s;  
+   transition-timing-function: ease-in;  
+   background-image: linear-gradient(to right bottom, rgb(155, 138, 138), #ffedbca8);  
+   display: flex;  
+   align-items: center;  
+   justify-content: center;  
+ }  
+ .container  
+ {  
+   display: flex;  
+   flex-direction: column;  
+   align-items: center;  
+   padding: 30px;  
+   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);  
+   border-radius: 15px;  
+   width: 600px;  
+   background-color: rgba(255, 255, 255, 0.3);  
+   margin: 10px;  
+ }  
+ .fa-quote-left, .fa-quote-right {  
+   font-size: 35px;  
+   color: rgb(179, 0, 0);  
+ }  
+ .quote  
+ {  
+   text-align: center;  
+   font-size: 40px;  
+   font-weight: bold;  
+ }  
+ .author   
+ {  
+   margin:10px;  
+   text-align: right;  
+   font-size: 25px;  
+   font-style: italic;  
+   font-family: cursive;  
+ }  
+ hr {  
+   margin: 10px 0;  
+   width: 100%;  
+   border: 1px solid black;  
+   background-color: black;  
+ }  
+ .buttons {  
+   width: 100%;  
+   display: flex;  
+   justify-content: space-between;  
+   align-items: center;  
+   margin-top: 9px;  
+ }  
+ .next  
+ {  
+   font-size:18px;  
+   border-radius: 5px;  
+   cursor:pointer;  
+   padding: 10px;  
+   margin-top: 5px;  
+   font-weight: bold;  
+   color: white;  
+   background-image: linear-gradient(to right bottom, rgb(230, 0, 0), #ffedbca8);  
+ }  
+ .container:hover  
+ {  
+   box-shadow: 0 10px 10px red;  
+ }  
+
+//JS code
+const text=document.getElementById("quote");  
+const author=document.getElementById("author");   
+const getNewQuote = async () =>  
+ {  
+   //api for quotes  
+   var url="https://type.fit/api/quotes";    
+   // fetch the data from api  
+   const response=await fetch(url);  
+   console.log(typeof response);  
+   //convert response to json and store it in quotes array  
+   const allQuotes = await response.json();  
+   // Generates a random number between 0 and the length of the quotes array  
+   const indx = Math.floor(Math.random()*allQuotes.length);  
+   //Store the quote present at the randomly generated index  
+   const quote=allQuotes[indx].text;  
+   //Store the author of the respective quote  
+   const auth=allQuotes[indx].author;  
+   if(auth==null)  
+   {  
+     author = "Anonymous";  
+   }  
+   //function to dynamically display the quote and the author  
+   text.innerHTML=quote;  
+   author.innerHTML="~ "+auth;  
+  }  
+getNewQuote();  
