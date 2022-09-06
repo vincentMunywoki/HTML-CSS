@@ -31,5 +31,4 @@ hypertext markup language learning.
 
 [016-Notes-app link ](https://Notes-app.vincentmunywoki.repl.co/)
 
-
-[017-Quiz-app link ](https://https://Quiz-appjs.vincentmunywoki.repl.co/)
+[017-Quiz-app link ](https://Quizappjs.vincentmunywoki.repl.co/)
