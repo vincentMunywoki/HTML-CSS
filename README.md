@@ -34,3 +34,5 @@ hypertext markup language learning.
 [017-Quiz-app JS link ](https://Quiz-appjs.vincentmunywoki.repl.co/)
 
 [018-calender link ](https://real-cal.vincentmunywoki.repl.co/)
+
+[019-martingale-calc link ](https://Martingale.vincentmunywoki.repl.co/)
