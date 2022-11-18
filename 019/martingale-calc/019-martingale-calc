@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+  <link rel="stylesheet" href="style.css">
+  <title>My Trades</title>
+</head>
+
+<body>
+  <div class="trade">
+    <div class="mytrade">
+      <h1>My Checkout</h1>
+      <hr>
+      <form id="myForm">
+        <div class="label">
+          <label>Buy Amount:</label>
+          <input required id="buyAmount" type="text" class="">
+        </div>
+        <div class="label">
+          <label>Martingale:</label>
+          <input required id="mat" type="text" class="">
+        </div>
+        <div class="label">
+          <label>Account Balance:</label>
+          <input required id="bal" type="text" class="">
+        </div>
+        <hr>
+        <div>
+          <button type="submit" class="" onclick="amount()">Check</button>
+        </div>
+      </form>
+      <div id="root" class="">
+        <!-- Results will be rendered here -->
+      </div>
+    </div>
+    <footer>
+      <p>Made With <img src="love.png"> By Vinny</p>
+    </footer>
+  </div>
+  <script class="defer">
+    const section = document.getElementById("root")
+
+    document.getElementById("myForm").addEventListener("submit", function (event) {
+      event.preventDefault()
+    });
+
+    const amount = () => {
+      section.innerText = '' //set content to none
+
+      const amt = parseFloat(document.getElementById("buyAmount").value)
+      const mat = parseFloat(document.getElementById("mat").value)
+      const bal = parseFloat(document.getElementById("bal").value)
+
+      if (amt && mat && bal) {
+
+        let current
+
+        current = amt * mat
+
+        times = []
+        times.push(amt)
+        times.push(current)
+
+        const initialValue = 0
+
+        let total
+
+        for (let i = 1; i < 100; i++) {
+          total = times.reduce((previousValue, currentValue) =>
+            previousValue + currentValue, initialValue)
+
+          if (total > bal) {
+            break
+          }
+
+          else {
+            current = current * mat
+
+            if (total < bal) {
+              times.push(current)
+            }
+          }
+        }
+
+        times.pop()
+
+        for (i = 0; i < times.length; i++) {
+          const run = document.createElement('p')
+          run.innerText = 'Run ' + [i + 1] + ': ' + times[i].toFixed(2) + ' USD'
+
+          section.appendChild(run)
+        }
+
+        const hr = document.createElement('hr')
+
+        const runs = document.createElement('p')
+        runs.innerText = times.length + ' consecutive losses will blow your account!'
+
+        const hrr = document.createElement('hr')
+
+        console.log(times.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue))
+
+        const spentP = document.createElement('p')
+        const balP = document.createElement('p')
+
+        spentP.innerText = 'Total Loss: ' + (times.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue)).toFixed(2) + ' USD'
+        balP.innerText = 'Your Balance: ' + (bal - parseFloat(times.reduce((previousValue, currentValue) => previousValue + currentValue, initialValue))).toFixed(2) + ' USD'
+
+        section.appendChild(hr)
+        section.appendChild(runs)
+        section.appendChild(hrr)
+        section.appendChild(spentP)
+        section.appendChild(balP)
+
+      }
+
+      else {
+        alert('Fill all the required fields')
+      }
+    }
+  </script>
+</body>
+
+</html>
+
+<!-- css file -->
+
+
+
+body{
+    width: 30%;
+    align-items: center;
+    background-color: rgb(241, 240, 237);
+    padding-left: 30%;
+    padding-right: 20%;
+    line-height: inherit;
+    position: relative;
+    left: 40px;
+    right:40px;
+    height:100%;
+}
+
+h1{
+    text-align: center;
+    font-weight: 900;
+    font-style: italic;
+}
+
+
+.trade{
+    background-color: rgb(236, 247, 243);
+    text-align: center;
+    justify-content: space-between;
+    padding: 16px 16px 16px 16px;
+    border: 2px solid #cce7d0;
+    border-radius: 7px;
+    position: sticky;
+    height: 10%;
+}
+
+.trade form{
+    align-items: center;
+    box-shadow: 20px 20px 34px rgba(0,0,0,0.03);
+    border-radius: 4x;
+}
+
+.trade:hover {
+    box-shadow: 10px 10px 54px rgb(126, 224, 241);
+}
+
+.mytrade label{
+    width: 100%;
+    padding: 5%;
+    display: flex;
+    outline: none;
+    justify-content: center;
+    align-items: center;
+    font: bold;
+}
+
+.label input{
+    height: 29px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+
+.mytrade button{
+    align-items: center;
+    cursor: pointer;
+    background: rgb(7, 16, 22);
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 900;
+    border-radius: 20px;
+}
+
+.mytrade button:hover{
+    background: #fff;
+    color: black;
+    font-weight: 900;
+}
+footer{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 800;
+    background: rgb(241, 240, 237);
+    padding: 0%;
+    font-style: italic;
+}
+
+footer img{
+    width: 20px;
+    height: 20px;
+}
+
+
+@media (max-width:799px) {
+  body{
+    width:100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    line-height: inherit;
+    position: sticky;
+  }
+  .trade{
+    width:60%
+  }
+}
+
+
+@media (max-width:477px) {
+  body {
+    position: relative;
+    width: 100%;
+    padding: 0px 1px 1pz 1px;
+    line-height: inherit;
+   }
+  .trade{
+    width: 60%;
+  }
+}
